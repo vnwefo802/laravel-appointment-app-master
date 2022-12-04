@@ -17,7 +17,14 @@ class CreateTattooAppointmentsTable extends Migration
         Schema::create('tattoo_appointments', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(TattooBodyPart::class)->nullable()->constrained();
+            $table->string('name')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->datetime('start_time');
+            $table->decimal('deposit', 15, 2)->nullable();
+            $table->longText('description')->nullable();
             $table->timestamps();
+
         });
     }
 
