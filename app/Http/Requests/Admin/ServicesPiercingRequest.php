@@ -25,7 +25,7 @@ class ServicesPiercingRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'despoit' => ['required'],
+            'deposit' => ['required'],
         ];
     }
 }

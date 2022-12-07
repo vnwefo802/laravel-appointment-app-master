@@ -38,13 +38,13 @@ Route::group(['middleware' => ['auth','isAdmin'],'prefix' => 'admin', 'as' => 'a
     Route::post('tattoos/media', [\App\Http\Controllers\Admin\TattooController::class, 'storeMedia'])->name('tattoos.storeMedia');
 
     // //piercing services
-    Route::resource('services_piercings', \App\Http\Controllers\Admin\ServicesPiercingController::class);
-    Route::delete('services_piercing_mass_destroy', [\App\Http\Controllers\Admin\ServicesPiercingController::class, 'massDestroy'])->name('services_piercing.mass_destroy');
+    Route::resource('services_piercings', \App\Http\Controllers\Admin\PiercingServicesController::class);
+    Route::delete('services_piercing_mass_destroy', [\App\Http\Controllers\Admin\PiercingServicesController::class, 'massDestroy'])->name('services_piercing.mass_destroy');
 
     //  //piercing body part
-     Route::resource('bodypart_piercings', \App\Http\Controllers\Admin\PiercingBodyPartController::class);
-     Route::delete('piercings_mass_destroy', [\App\Http\Controllers\Admin\PiercingBodyPartController::class, 'massDestroy'])->name('piercings.mass_destroy');
-     Route::post('tattoos/media', [\App\Http\Controllers\Admin\PiercingBodyPartController::class, 'storeMedia'])->name('tattoos.storeMedia');
+     Route::resource('bodypart_piercings', \App\Http\Controllers\Admin\PiercingBodypartsController::class);
+     Route::delete('piercings_mass_destroy', [\App\Http\Controllers\Admin\PiercingBodypartsController::class, 'massDestroy'])->name('piercings.mass_destroy');
+     Route::post('tattoos/media', [\App\Http\Controllers\Admin\PiercingBodypartsController::class, 'storeMedia'])->name('tattoos.storeMedia');
 
     // appointment
     Route::resource('appointments', \App\Http\Controllers\Admin\AppointmentController::class);

@@ -50,10 +50,10 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $piercing_appointment->name }}</td>
                                 <td>{{ $piercing_appointment->start_time }}</td>
-                                <td>${{ $piercing_appointment->price }}</td>
+                                <td>${{ $piercing_appointment->deposit }}</td>
                                 <td>
-                                    @foreach($piercing_appointments->servicespiercings as $key => $servicespiercing)
-                                        <span class="badge badge-info">{{ $servicespiercing->name }}</span>
+                                    @foreach($piercing_appointments->piercing_services as $key => $piercing_service)
+                                        <span class="badge badge-info">{{ $piercing_service->name }}</span>
                                     @endforeach
                                 </td>
                                 <td>

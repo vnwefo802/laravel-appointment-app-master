@@ -23,17 +23,17 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.services_piercings.update', $servicesPiercing->id) }}" method="POST">
+                <form action="{{ route('admin.services_piercings.update', $piercing_service->id) }}" method="POST">
                     @csrf
                     @method('put')
                     <div class="form-group">
                         <label for="name">{{ __('name') }}</label>
-                        <input type="text" class="form-control" id="name" placeholder="{{ __('name') }}" name="name" value="{{ old('name', $servicesPiercing->name) }}" />
+                        <input type="text" class="form-control" id="name" placeholder="{{ __('name') }}" name="name" value="{{ old('name', $piercing_service->name) }}" />
                     </div>
 
                     <div class="form-group">
-                        <label for="despoit">{{ __('despoit') }}</label>
-                        <input type="text" class="form-control" id="despoit" placeholder="{{ __('despoit') }}" name="despoit" value="{{ old('despoit', $servicesPiercing->despoit) }}" />
+                        <label for="deposit">{{ __('deposit') }}</label>
+                        <input type="text" class="form-control" id="deposit" placeholder="{{ __('deposit') }}" name="deposit" value="{{ old('deposit', $piercing_service->deposit) }}" />
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">{{ __('Save')}}</button>
                 </form>

@@ -36,20 +36,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($services_piercings as $services_piercing)
-                            <tr data-entry-id="{{ $services_piercing->id }}">
+                            @forelse($piercing_services as $piercing_service)
+                            <tr data-entry-id="{{ $piercing_service->id }}">
                                 <td>
 
                                 </td>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $services_piercing->name }}</td>
-                                <td>${{ $services_piercing->despoit }}</td>
+                                <td>{{ $piercing_service->name }}</td>
+                                <td>${{ $piercing_service->deposit }}</td>
                                 <td>
                                     <div class="btn-group btn-group-sm">
-                                        <a href="{{ route('admin.services_piercings.edit', $services_piercing->id) }}" class="btn btn-info">
+                                        <a href="{{ route('admin.services_piercings.edit', $piercing_service->id) }}" class="btn btn-info">
                                             <i class="fa fa-pencil-alt"></i>
                                         </a>
-                                        <form onclick="return confirm('are you sure ? ')" class="d-inline" action="{{ route('admin.services_piercings.destroy', $services_piercing->id) }}" method="POST">
+                                        <form onclick="return confirm('are you sure ? ')" class="d-inline" action="{{ route('admin.services_piercings.destroy', $piercing_service->id) }}" method="POST">
                                             @csrf
                                             @method('delete')
                                             <button class="btn btn-danger" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">

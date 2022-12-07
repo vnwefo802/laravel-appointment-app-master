@@ -31,8 +31,8 @@
                     <div class="form-group">
                         <label for="piercing-body-part">{{ __('piercing body part') }}</label>
                         <select class="form-control" name="piercing_id" >
-                            @foreach($piercing_body_parts as $id => $piercing_body_part)
-                                <option value="{{ $id }}"> {{ $piercing_body_part }}</option>
+                            @foreach($piercing_bodyparts as $id => $piercing_bodypart)
+                                <option value="{{ $id }}"> {{ $piercing_bodypart }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -66,8 +66,8 @@
                     <div class="form-group">
                         <label for="service">{{ __('piercing service') }}</label>
                         <select class="form-control" name="services_piercings[]" >
-                            @foreach($services_piercings as $id => $services_piercing)
-                                <option value="{{ $id }}"> {{ $services_piercing }}</option>
+                            @foreach($piercing_services as $id => $piercing_service)
+                                <option value="{{ $id }}"> {{ $piercing_service }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -77,7 +77,7 @@
             </div>
         </div>
 
-
+        
     <!-- Content Row -->
 
 </div>

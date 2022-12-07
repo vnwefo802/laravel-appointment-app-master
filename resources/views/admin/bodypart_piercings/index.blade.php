@@ -35,21 +35,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($piercing_body_parts as $piercing_body_part)
-                            <tr data-entry-id="{{ $piercing_body_part->id }}">
+                            @forelse($piercing_bodyparts as $piercing_bodypart)
+                            <tr data-entry-id="{{ $piercing_bodypart->id }}">
                                 <td>
 
                                 </td>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $piercing_body_part->name }}</td>
+                                <td>{{ $piercing_bodypart->name }}</td>
 
 
                                 <td>
                                     <div class="btn-group btn-group-sm">
-                                        <a href="{{ route('admin.bodypart_piercings.edit', $piercing_body_part->id) }}" class="btn btn-info">
+                                        <a href="{{ route('admin.bodypart_piercings.edit', $piercing_bodypart->id) }}" class="btn btn-info">
                                             <i class="fa fa-pencil-alt"></i>
                                         </a>
-                                        <form onclick="return confirm('are you sure ? ')" class="d-inline" action="{{ route('admin.bodypart_piercings.destroy', $piercing_body_part->id) }}" method="POST">
+                                        <form onclick="return confirm('are you sure ? ')" class="d-inline" action="{{ route('admin.bodypart_piercings.destroy', $piercing_bodypart->id) }}" method="POST">
                                             @csrf
                                             @method('delete')
                                             <button class="btn btn-danger" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">

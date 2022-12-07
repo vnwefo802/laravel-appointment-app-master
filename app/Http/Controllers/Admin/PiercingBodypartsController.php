@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\PiercingBodyparts;
+use App\Models\PiercingServices;
+use App\Http\Requests\Admin\PiercingBodyPartRequest;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class PiercingBodypartsController extends Controller
@@ -14,7 +17,9 @@ class PiercingBodypartsController extends Controller
      */
     public function index()
     {
-        //
+        $piercing_bodyparts = PiercingBodyparts::all();
+
+        return view('admin.bodypart_piercings.index', compact('piercing_bodyparts'));
     }
 
     /**
@@ -24,7 +29,9 @@ class PiercingBodypartsController extends Controller
      */
     public function create()
     {
-        //
+        $piercing_services = PiercingServices::all()->pluck('name', 'id');
+
+        return view('admin.bodypart_piercings.create', compact('piercing_services'));
     }
 
     /**
@@ -33,9 +40,17 @@ class PiercingBodypartsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PiercingBodyPartRequest $request)
     {
-        //
+        $piercingBodyparts = PiercingBodyparts::create($request->validated() + [
+            'name' => $request->name,
+        ]);
+    $piercingBodyparts->piercing_services()->sync($request->input('piercing_services', []));
+
+    return redirect()->route('admin.bodypart_piercings.index')->with([
+        'message' => 'successfully created !',
+        'alert-type' => 'success'
+    ]);
     }
 
     /**
@@ -57,7 +72,11 @@ class PiercingBodypartsController extends Controller
      */
     public function edit(PiercingBodyparts $piercingBodyparts)
     {
-        //
+        $piercing_services = PiercingServices::all()->pluck('name', 'id');
+
+        $piercingBodyparts->load('piercing_services');
+
+        return view('admin.bodypart_piercings.edit', compact('piercing_services', 'piercingBodyparts'));
     }
 
     /**
@@ -67,9 +86,13 @@ class PiercingBodypartsController extends Controller
      * @param  \App\Models\PiercingBodyparts  $piercingBodyparts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PiercingBodyparts $piercingBodyparts)
+    public function update(PiercingBodyPartRequest $request, PiercingBodyparts $piercingBodyparts)
     {
-        //
+        $piercingBodyparts->update($request->validated() + [
+            'name' => $request->name,
+        ]);
+
+        $piercingBodyparts->piercing_services()->sync($request->input('piercing_services', []));
     }
 
     /**
@@ -80,6 +103,18 @@ class PiercingBodypartsController extends Controller
      */
     public function destroy(PiercingBodyparts $piercingBodyparts)
     {
-        //
+        $piercingBodyparts->delete();
+
+        return back()->with([
+            'message' => 'successfully deleted !',
+            'alert-type' => 'danger'
+        ]);
+    }
+
+    public function massDestroy(Request $request)
+    {
+        PiercingBodyparts::whereIn('id', request('ids'))->delete();
+
+        return response()->noContent();
     }
 }
