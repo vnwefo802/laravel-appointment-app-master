@@ -18,9 +18,17 @@ class CreatePiercingBodypartServicesTable extends Migration
         Schema::create('piercing_bodypart_services', function (Blueprint $table) {
             $table->id();
             // $table->foreignIdFor(PiercingBodyparts::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(PiercingServices::class)->constrained()->cascadeOnDelete();
+            // $table->foreignIdFor(PiercingServices::class)->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger('piercingbodypart')->unsigned();
+            $table->foreign('piercingbodypart')
+                      ->references('id')
+                      ->on('piercing_bodyparts')
+                      ->onDelete('cascade')
+                      ->onUpdate('cascade');
             $table->timestamps();
         });
+
+
     }
 
     /**

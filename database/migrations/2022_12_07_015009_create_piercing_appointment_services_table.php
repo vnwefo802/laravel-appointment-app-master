@@ -17,8 +17,20 @@ class CreatePiercingAppointmentServicesTable extends Migration
     {
         Schema::create('piercing_appointment_services', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(PiercingAppointment::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(PiercingServices::class)->constrained()->cascadeOnDelete();
+        
+            $table->unsignedBigInteger('appointment_id')->unsigned();
+            $table->foreign('appointment_id')
+                  ->references('id')
+                  ->on('appointments')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+
+                  $table->unsignedBigInteger('pier_appoint_servic')->unsigned();
+                  $table->foreign('pier_appoint_servic')
+                        ->references('id')
+                        ->on('piercing_appointments')
+                        ->onDelete('cascade')
+                        ->onUpdate('cascade');
             $table->timestamps();
         });
     }
