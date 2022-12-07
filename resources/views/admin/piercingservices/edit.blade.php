@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.services_piercings.update', $piercing_service->id) }}" method="POST">
+                <form action="{{ route('admin.services_piercings.update', $piercingServices->id) }}" method="POST">
                     @csrf
                     @method('put')
                     <div class="form-group">

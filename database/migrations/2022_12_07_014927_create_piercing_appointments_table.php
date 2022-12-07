@@ -17,6 +17,7 @@ class CreatePiercingAppointmentsTable extends Migration
         Schema::create('piercing_appointments', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(PiercingBodyparts::class)->nullable()->constrained();
+            
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();

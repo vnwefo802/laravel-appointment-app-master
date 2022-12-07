@@ -37,7 +37,7 @@
 
                     <div class="form-group">
                         <label for="service">{{ __('services_piercings') }}</label>
-                        <select class="form-control" name="services_piercings[]" multiple id="">
+                        <select class="form-control" name="services[]" multiple id="">
                             @foreach($piercing_services as $id => $piercing_service)
                                 <option value="{{ $id }}"> {{ $piercing_service }}</option>
                             @endforeach

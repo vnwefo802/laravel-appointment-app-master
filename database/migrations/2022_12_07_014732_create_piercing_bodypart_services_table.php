@@ -19,8 +19,17 @@ class CreatePiercingBodypartServicesTable extends Migration
             $table->id();
             // $table->foreignIdFor(PiercingBodyparts::class)->constrained()->cascadeOnDelete();
             // $table->foreignIdFor(PiercingServices::class)->constrained()->cascadeOnDelete();
-            $table->unsignedBigInteger('piercingbodypart')->unsigned();
-            $table->foreign('piercingbodypart')
+
+            // $table->unsignedBigInteger('piercingservices_id')->unsigned();
+            // $table->foreign('piercingservices_id')
+            //           ->references('id')
+            //           ->on('piercingservices')
+            //           ->onDelete('cascade')
+            //           ->onUpdate('cascade');
+
+
+            $table->unsignedBigInteger('piercingbodypart_id')->unsigned();
+            $table->foreign('piercingbodypart_id')
                       ->references('id')
                       ->on('piercing_bodyparts')
                       ->onDelete('cascade')

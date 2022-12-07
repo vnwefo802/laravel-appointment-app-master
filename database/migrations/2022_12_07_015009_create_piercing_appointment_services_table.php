@@ -17,7 +17,7 @@ class CreatePiercingAppointmentServicesTable extends Migration
     {
         Schema::create('piercing_appointment_services', function (Blueprint $table) {
             $table->id();
-        
+
             $table->unsignedBigInteger('appointment_id')->unsigned();
             $table->foreign('appointment_id')
                   ->references('id')
@@ -25,8 +25,8 @@ class CreatePiercingAppointmentServicesTable extends Migration
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
 
-                  $table->unsignedBigInteger('pier_appoint_servic')->unsigned();
-                  $table->foreign('pier_appoint_servic')
+                  $table->unsignedBigInteger('pier_appoint_servic_id')->unsigned();
+                  $table->foreign('pier_appoint_servic_id')
                         ->references('id')
                         ->on('piercing_appointments')
                         ->onDelete('cascade')

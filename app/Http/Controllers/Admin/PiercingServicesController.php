@@ -18,7 +18,7 @@ class PiercingServicesController extends Controller
     {
         $piercing_services = PiercingServices::all();
 
-        return view('admin.services_piercings.index', compact('piercing_services'));
+        return view('admin.piercingservices.index', compact('piercing_services'));
     }
 
     /**
@@ -28,7 +28,7 @@ class PiercingServicesController extends Controller
      */
     public function create()
     {
-        return view('admin.services_piercings.create');
+        return view('admin.piercingservices.create');
     }
 
     /**
@@ -55,7 +55,7 @@ class PiercingServicesController extends Controller
      */
     public function show(PiercingServices $piercingServices)
     {
-        return view('admin.services_piercings.show', compact('piercing_services'));
+        return view('admin.piercingservices.show', compact('piercing_services'));
     }
 
     /**
@@ -66,7 +66,7 @@ class PiercingServicesController extends Controller
      */
     public function edit(PiercingServices $piercingServices)
     {
-        return view('admin.services_piercings.edit', compact('piercing_services'));
+        return view('admin.piercingservices.edit', compact('piercingServices'));
     }
 
     /**
