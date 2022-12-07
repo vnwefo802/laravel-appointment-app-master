@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ServiceRequest extends FormRequest
+class ServicesPiercingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +25,7 @@ class ServiceRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'description' => ['required', 'max:1000'],
             'despoit' => ['required'],
         ];
     }
 }
-

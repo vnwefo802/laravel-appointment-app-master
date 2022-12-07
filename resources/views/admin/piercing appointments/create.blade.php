@@ -20,18 +20,27 @@
         <div class="card shadow">
             <div class="card-header">
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">{{ __('create appointment') }}</h1>
-                    <a href="{{ route('admin.appointments.index') }}" class="btn btn-primary btn-sm shadow-sm">{{ __('Go Back') }}</a>
+                    <h1 class="h3 mb-0 text-gray-800">{{ __('create piercing appointment') }}</h1>
+                    <a href="{{ route('admin.piercing_appointments.index') }}" class="btn btn-primary btn-sm shadow-sm">{{ __('Go Back') }}</a>
                 </div>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.appointments.store') }}" method="POST">
+                <form action="{{ route('admin.piercing_appointments.store') }}" method="POST">
                     @csrf
 
-                    {{-- client name start --}}
                     <div class="form-group">
+                        <label for="piercing-body-part">{{ __('piercing body part') }}</label>
+                        <select class="form-control" name="piercing_id" >
+                            @foreach($piercing_body_parts as $id => $piercing_body_part)
+                                <option value="{{ $id }}"> {{ $piercing_body_part }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                     {{-- client name start --}}
+                     <div class="form-group">
                         <label for="name">{{ __('Client name') }}</label>
-                        <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" />
+                        <input type="text" class="form-control" id="name" name="name" placeholder="First Name Last Name" value="{{ old('name') }}" />
                     </div>
                     {{-- client name end --}}
 
@@ -49,42 +58,18 @@
                     </div>
                     {{-- client phone end --}}
 
-
-                    {{-- tattoo services start--}}
-                      <div class="form-group">
-                        <label for="service">{{ __('service') }}</label>
-                        <select class="form-control" name="services[]" >
-                            <option selected disabled>Which Tattoo Service</option>
-                            @foreach($services as $id => $service)
-                                <option value="{{ $id }}"> {{ $service }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                 {{-- tattoo services start--}}
-
-
-                    {{-- tattoo body part start--}}
-                    <div class="form-group">
-                        <label for="tattoo">{{ __('tattoo') }}</label>
-                        <select class="form-control" name="tattoo_id" >
-                            <option selected disabled>Select Tattoo Body part</option>
-                            @foreach($tattoos as $id => $tattoo)
-                                <option value="{{ $id }}"> {{ $tattoo }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    {{-- tattoo body part end--}}
-
                     <div class="form-group">
                         <label for="start_time">{{ __('Start Time') }}</label>
                         <input type="text" class="form-control datetimepicker" id="start_time" name="start_time" value="{{ old('start_time') }}" />
                     </div>
 
                     <div class="form-group">
-                        <label for="description">{{ __('description') }}</label>
-                        <textarea class="form-control" id="description" placeholder="{{ __('description') }}" name="description" >
-                            {{ old('description') }}
-                        </textarea>
+                        <label for="service">{{ __('piercing service') }}</label>
+                        <select class="form-control" name="services_piercings[]" >
+                            @foreach($services_piercings as $id => $services_piercing)
+                                <option value="{{ $id }}"> {{ $services_piercing }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-block">{{ __('Save') }}</button>

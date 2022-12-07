@@ -39,7 +39,7 @@ class ServiceController extends Controller
      */
     public function store(ServiceRequest $request)
     {
-        Service::create($request->validated() + ['price' => $request->price]);
+        Service::create($request->validated() + ['despoit' => $request->despoit]);
 
         return redirect()->route('admin.services.index')->with([
             'message' => 'successfully created !',
@@ -78,7 +78,7 @@ class ServiceController extends Controller
      */
     public function update(ServiceRequest $request,Service $service)
     {
-        $service->update($request->validated() + ['price' => $request->price]);
+        $service->update($request->validated() + ['despoit' => $request->despoit]);
 
         return redirect()->route('admin.services.index')->with([
             'message' => 'successfully updated !',

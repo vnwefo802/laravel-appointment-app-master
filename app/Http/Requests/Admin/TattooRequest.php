@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ServiceRequest extends FormRequest
+class TattooRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,9 @@ class ServiceRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
-            'description' => ['required', 'max:1000'],
-            'despoit' => ['required'],
+            'name'       => [
+                'nullable',
+            ],
         ];
     }
 }
-

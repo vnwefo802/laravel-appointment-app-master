@@ -13,7 +13,7 @@
                     {{ __('Service') }}
                 </h6>
                 <div class="ml-auto">
-                    <a href="{{ route('admin.services.create') }}" class="btn btn-primary">
+                    <a href="{{ route('admin.services_piercings.create') }}" class="btn btn-primary">
                         <span class="icon text-white-50">
                             <i class="fa fa-plus"></i>
                         </span>
@@ -31,27 +31,25 @@
                                 </th>
                                 <th>No</th>
                                 <th>Name</th>
-                                <th>Description</th>
                                 <th>Price</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($services as $service)
-                            <tr data-entry-id="{{ $service->id }}">
+                            @forelse($services_piercings as $services_piercing)
+                            <tr data-entry-id="{{ $services_piercing->id }}">
                                 <td>
 
                                 </td>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $service->name }}</td>
-                                <td>{{ $service->description }}</td>
-                                <td>${{ $service->despoit }}</td>
+                                <td>{{ $services_piercing->name }}</td>
+                                <td>${{ $services_piercing->despoit }}</td>
                                 <td>
                                     <div class="btn-group btn-group-sm">
-                                        <a href="{{ route('admin.services.edit', $service->id) }}" class="btn btn-info">
+                                        <a href="{{ route('admin.services_piercings.edit', $services_piercing->id) }}" class="btn btn-info">
                                             <i class="fa fa-pencil-alt"></i>
                                         </a>
-                                        <form onclick="return confirm('are you sure ? ')" class="d-inline" action="{{ route('admin.services.destroy', $service->id) }}" method="POST">
+                                        <form onclick="return confirm('are you sure ? ')" class="d-inline" action="{{ route('admin.services_piercings.destroy', $services_piercing->id) }}" method="POST">
                                             @csrf
                                             @method('delete')
                                             <button class="btn btn-danger" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">
@@ -83,7 +81,7 @@
   let deleteButtonTrans = 'delete selected'
   let deleteButton = {
     text: deleteButtonTrans,
-    url: "{{ route('admin.services.mass_destroy') }}",
+    url: "{{ route('admin.services_piercing.mass_destroy') }}",
     className: 'btn-danger',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {

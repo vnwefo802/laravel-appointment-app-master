@@ -1,12 +1,11 @@
 <?php
 
-use App\Models\Tattoo;
-use App\Models\Service;
+use App\Models\PiercingBodyparts;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAppointmentsTable extends Migration
+class CreatePiercingAppointmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,14 +14,13 @@ class CreateAppointmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('appointments', function (Blueprint $table) {
+        Schema::create('piercing_appointments', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Tattoo::class)->nullable()->constrained();
+            $table->foreignIdFor(PiercingBodyparts::class)->nullable()->constrained();
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->datetime('start_time');
-            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }
@@ -34,6 +32,6 @@ class CreateAppointmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('appointments');
+        Schema::dropIfExists('piercing_appointments');
     }
 }

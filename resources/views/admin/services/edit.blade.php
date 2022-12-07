@@ -31,14 +31,18 @@
                         <input type="text" class="form-control" id="name" placeholder="{{ __('name') }}" name="name" value="{{ old('name', $service->name) }}" />
                     </div>
                     <div class="form-group">
-                        <label for="price">{{ __('price') }}</label>
-                        <input type="text" class="form-control" id="price" placeholder="{{ __('price') }}" name="price" value="{{ old('price', $service->price) }}" />
+                        <label for="description">{{ __('description') }}</label>
+                        <input type="text" class="form-control" id="description" placeholder="{{ __('description') }}" name="description" value="{{ old('description', $service->description) }}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="despoit">{{ __('despoit') }}</label>
+                        <input type="text" class="form-control" id="despoit" placeholder="{{ __('despoit') }}" name="despoit" value="{{ old('despoit', $service->despoit) }}" />
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">{{ __('Save')}}</button>
                 </form>
             </div>
         </div>
-    
+
 
     <!-- Content Row -->
 

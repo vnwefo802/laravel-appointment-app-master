@@ -20,25 +20,30 @@
         <div class="card shadow">
             <div class="card-header">
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">{{ __('create Service') }}</h1>
-                    <a href="{{ route('admin.services.index') }}" class="btn btn-primary btn-sm shadow-sm">{{ __('Go Back') }}</a>
+                    <h1 class="h3 mb-0 text-gray-800">{{ __('create client') }}</h1>
+                    <a href="{{ route('admin.bodypart_piercings.index') }}" class="btn btn-primary btn-sm shadow-sm">{{ __('Go Back') }}</a>
                 </div>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.services.store') }}" method="POST">
+                <form action="{{ route('admin.bodypart_piercings.store') }}" method="POST">
                     @csrf
+                    {{-- bodypart name start --}}
                     <div class="form-group">
                         <label for="name">{{ __('name') }}</label>
                         <input type="text" class="form-control" id="name" placeholder="{{ __('name') }}" name="name" value="{{ old('name') }}" />
                     </div>
+                    {{-- bodypart name end --}}
+
+
                     <div class="form-group">
-                        <label for="description">{{ __('description') }}</label>
-                        <input type="text" class="form-control" id="description" placeholder="{{ __('description') }}" name="description" value="{{ old('description') }}" />
+                        <label for="service">{{ __('services_piercings') }}</label>
+                        <select class="form-control" name="services_piercings[]" multiple id="">
+                            @foreach($services_piercings as $id => $services_piercing)
+                                <option value="{{ $id }}"> {{ $services_piercing }}</option>
+                            @endforeach
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label for="despoit">{{ __('despoit') }}</label>
-                        <input type="text" class="form-control" id="despoit" placeholder="{{ __('despoit') }}" name="despoit" value="{{ old('despoit') }}" />
-                    </div>
+
                     <button type="submit" class="btn btn-primary btn-block">{{ __('Save') }}</button>
                 </form>
             </div>
@@ -49,3 +54,10 @@
 
 </div>
 @endsection
+
+
+@push('style-alt')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+@endpush
+
+

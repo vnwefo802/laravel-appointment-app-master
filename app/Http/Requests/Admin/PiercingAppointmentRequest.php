@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AppointmentRequest extends FormRequest
+class PiercingAppointmentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,9 @@ class AppointmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'tattoo_id'   => [
+            'piercing_id'   => [
                 'required',
                 'integer',
-            ],
-
-            'description'   => [
-                'required',
             ],
 
             'name'   => [
@@ -50,11 +46,10 @@ class AppointmentRequest extends FormRequest
                 'date_format:Y-m-d H:i',
             ],
 
-            'services.*'  => [
+            'services_piercings.*'  => [
                 'integer',
             ],
 
         ];
     }
 }
-

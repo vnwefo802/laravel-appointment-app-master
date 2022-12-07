@@ -25,15 +25,11 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.services.store') }}" method="POST">
+                <form action="{{ route('admin.services_piercings.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="name">{{ __('name') }}</label>
                         <input type="text" class="form-control" id="name" placeholder="{{ __('name') }}" name="name" value="{{ old('name') }}" />
-                    </div>
-                    <div class="form-group">
-                        <label for="description">{{ __('description') }}</label>
-                        <input type="text" class="form-control" id="description" placeholder="{{ __('description') }}" name="description" value="{{ old('description') }}" />
                     </div>
                     <div class="form-group">
                         <label for="despoit">{{ __('despoit') }}</label>

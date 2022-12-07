@@ -10,20 +10,20 @@
         <div class="card">
             <div class="card-header py-3 d-flex">
                 <h6 class="m-0 font-weight-bold text-primary">
-                    {{ __('Service') }}
+                    {{ __('appointment') }}
                 </h6>
                 <div class="ml-auto">
-                    <a href="{{ route('admin.services.create') }}" class="btn btn-primary">
+                    <a href="{{ route('admin.piercing_appointments.create') }}" class="btn btn-primary">
                         <span class="icon text-white-50">
                             <i class="fa fa-plus"></i>
                         </span>
-                        <span class="text">{{ __('New Service') }}</span>
+                        <span class="text">{{ __('New appointment') }}</span>
                     </a>
                 </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-hover datatable datatable-Service" cellspacing="0" width="100%">
+                    <table class="table table-bordered table-striped table-hover datatable datatable-piercingappointment" cellspacing="0" width="100%">
                         <thead>
                             <tr>
                                 <th width="10">
@@ -31,27 +31,37 @@
                                 </th>
                                 <th>No</th>
                                 <th>Name</th>
-                                <th>Description</th>
-                                <th>Price</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>
+                                <th>Service</th>
+                                <th>Start Time</th>
+                                <th>Body Part</th>
+                                <th>despoit</th>
+
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($services as $service)
-                            <tr data-entry-id="{{ $service->id }}">
+                            @forelse($piercing_appointments as $piercing_appointment)
+                            <tr data-entry-id="{{ $piercing_appointment->id }}">
                                 <td>
 
                                 </td>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $service->name }}</td>
-                                <td>{{ $service->description }}</td>
-                                <td>${{ $service->despoit }}</td>
+                                <td>{{ $piercing_appointment->name }}</td>
+                                <td>{{ $piercing_appointment->start_time }}</td>
+                                <td>${{ $piercing_appointment->price }}</td>
+                                <td>
+                                    @foreach($piercing_appointments->servicespiercings as $key => $servicespiercing)
+                                        <span class="badge badge-info">{{ $servicespiercing->name }}</span>
+                                    @endforeach
+                                </td>
                                 <td>
                                     <div class="btn-group btn-group-sm">
-                                        <a href="{{ route('admin.services.edit', $service->id) }}" class="btn btn-info">
+                                        <a href="{{ route('admin.piercing_appointments.edit', $piercing_appointment->id) }}" class="btn btn-info">
                                             <i class="fa fa-pencil-alt"></i>
                                         </a>
-                                        <form onclick="return confirm('are you sure ? ')" class="d-inline" action="{{ route('admin.services.destroy', $service->id) }}" method="POST">
+                                        <form onclick="return confirm('are you sure ? ')" class="d-inline" action="{{ route('admin.piercing_appointments.destroy', $piercing_appointment->id) }}" method="POST">
                                             @csrf
                                             @method('delete')
                                             <button class="btn btn-danger" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">
@@ -63,7 +73,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="7" class="text-center">{{ __('Data Empty') }}</td>
+                                <td colspan="10" class="text-center">{{ __('Data Empty') }}</td>
                             </tr>
                             @endforelse
                         </tbody>
@@ -83,7 +93,7 @@
   let deleteButtonTrans = 'delete selected'
   let deleteButton = {
     text: deleteButtonTrans,
-    url: "{{ route('admin.services.mass_destroy') }}",
+    url: "{{ route('admin.piercing_appointments.mass_destroy') }}",
     className: 'btn-danger',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
@@ -108,7 +118,7 @@
     order: [[ 1, 'asc' ]],
     pageLength: 50,
   });
-  $('.datatable-Service:not(.ajaxTable)').DataTable({ buttons: dtButtons })
+  $('.datatable-piercingappointment:not(.ajaxTable)').DataTable({ buttons: dtButtons })
     $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
         $($.fn.dataTable.tables(true)).DataTable()
             .columns.adjust();

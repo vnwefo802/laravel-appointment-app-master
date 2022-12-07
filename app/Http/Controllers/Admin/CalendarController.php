@@ -17,7 +17,7 @@ class CalendarController extends Controller
     {
         $events = [];
 
-        $appointments = Appointment::with(['client', 'employee'])->get();
+        $appointments = Appointment::with(['tattoo'])->get();
 
         foreach ($appointments as $appointment) {
             if (!$appointment->start_time) {
@@ -25,7 +25,7 @@ class CalendarController extends Controller
             }
 
             $events[] = [
-                'title' => $appointment->client->name . ' ('.$appointment->employee->name.')',
+                'title' => $appointment->tattoo->name,
                 'start' => $appointment->start_time,
                 'url'   => route('admin.appointments.edit', $appointment->id),
             ];

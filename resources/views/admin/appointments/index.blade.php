@@ -4,7 +4,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-   
+
 
     <!-- Content Row -->
         <div class="card">
@@ -30,13 +30,15 @@
 
                                 </th>
                                 <th>No</th>
-                                <th>Client</th>
-                                <th>Employee</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>
+                                <th>Service</th>
                                 <th>Start Time</th>
-                                <th>Finish Time</th>
-                                <th>Price</th>
-                                <th>Comments</th>
-                                <th>Services</th>
+                                <th>body part</th>
+
+                                <th>description</th>
+                                <th>despoit</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -47,17 +49,26 @@
 
                                 </td>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $appointment->client->name }}</td>
-                                <td>{{ $appointment->employee->name }}</td>
-                                <td>{{ $appointment->start_time }}</td>
-                                <td>{{ $appointment->finish_time }}</td>
-                                <td>${{ $appointment->price }}</td>
-                                <td>{{ $appointment->comments }}</td>
-                                <td> 
-                                    @foreach($appointment->services as $key => $service)
+                                <td>{{ $appointment->name }}</td>
+                                <td>{{ $appointment->email }}</td>
+                                <td>{{ $appointment->phone }}</td>
+                                <td>
+                                    @foreach($appointment->services as $key => $service )
                                         <span class="badge badge-info">{{ $service->name }}</span>
                                     @endforeach
                                 </td>
+                                <td>{{ $appointment->start_time }}</td>
+                                <td>{{ $appointment->tattoo->name }}</td>
+
+                                <td>{{ $appointment->description }}</td>
+                                {{-- services price --}}
+                                    @foreach($appointment->services as $key => $service )
+                                        <td>£{{ $service->despoit }}</td>
+                                    @endforeach
+                                {{-- services price --}}
+
+
+                                {{-- <td>£{{ $appointment->price }}</td> --}}
                                 <td>
                                     <div class="btn-group btn-group-sm">
                                         <a href="{{ route('admin.appointments.edit', $appointment->id) }}" class="btn btn-info">

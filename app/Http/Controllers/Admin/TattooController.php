@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Tattoo;
-use App\Models\Service;
-use App\Models\Appointment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\AppointmentRequest;
+use App\Http\Controllers\Traits\MediaUploading;
+use App\Http\Requests\Admin\TattooRequest;
 
-
-class AppointmentController extends Controller
+class TattooController extends Controller
 {
+    use MediaUploading;
     /**
      * Display a listing of the resource.
      *
@@ -19,9 +18,9 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $appointments = Appointment::all();
+        $tattoos = Tattoo::all();
 
-        return view('admin.appointments.index', compact('appointments'));
+        return view('admin.tattoos.index', compact('tattoos'));
     }
 
     /**
@@ -31,10 +30,7 @@ class AppointmentController extends Controller
      */
     public function create()
     {
-        $tattoos = Tattoo::all()->pluck('name', 'id');
-        $services = Service::all()->pluck('name', 'id');
-
-        return view('admin.appointments.create', compact('tattoos','services'));
+        return view('admin.tattoos.create');
     }
 
     /**
@@ -43,14 +39,18 @@ class AppointmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AppointmentRequest $request)
+    public function store(TattooRequest $request)
     {
-        $appointment = Appointment::create($request->validated() + [
-            'description' => $request->description
+        $tattoo = Tattoo::create($request->validated() + [
+            'email' => $request->email,
+            'phone' => $request->phone
         ]);
-        $appointment->services()->sync($request->input('services', []));
 
-        return redirect()->route('admin.appointments.index')->with([
+        if ($request->input('photo', false)) {
+            $tattoo->addMedia(storage_path('tmp/uploads/' . $request->input('photo')))->toMediaCollection('photo');
+        }
+
+        return redirect()->route('admin.tattoos.index')->with([
             'message' => 'successfully created !',
             'alert-type' => 'success'
         ]);
@@ -62,12 +62,9 @@ class AppointmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Appointment $appointment)
+    public function edit(Tattoo $tattoo)
     {
-        $tattoos = Tattoo::all()->pluck('name', 'id');
-        $services = Service::all()->pluck('name', 'id');
-
-        return view('admin.appointments.edit', compact('appointment', 'tattoos', 'services'));
+        return view('admin.tattoos.edit', compact('tattoo'));
     }
 
     /**
@@ -77,14 +74,22 @@ class AppointmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AppointmentRequest $request,Appointment $appointment)
+    public function update(TattooRequest $request,Tattoo $tattoo)
     {
-        $appointment->update($request->validated() + [
-            'description' => $request->description
+        $tattoo->update($request->validated() + [
+            'email' => $request->email,
+            'phone' => $request->phone
         ]);
-        $appointment->services()->sync($request->input('services', []));
 
-        return redirect()->route('admin.appointments.index')->with([
+        if ($request->input('photo', false)) {
+            if (!$tattoo->photo || $request->input('photo') !== $tattoo->photo->file_name) {
+                $tattoo->addMedia(storage_path('tmp/uploads/' . $request->input('photo')))->toMediaCollection('photo');
+            }
+        } elseif ($tattoo->photo) {
+            $tattoo->photo->delete();
+        }
+
+        return redirect()->route('admin.tattoos.index')->with([
             'message' => 'successfully updated !',
             'alert-type' => 'info'
         ]);
@@ -96,9 +101,9 @@ class AppointmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Appointment $appointment)
+    public function destroy(Tattoo $tattoo)
     {
-        $appointment->delete();
+        $tattoo->delete();
 
         return back()->with([
             'message' => 'successfully deleted !',
@@ -106,14 +111,14 @@ class AppointmentController extends Controller
         ]);
     }
 
-     /**
-     * Delete all selected Appoinment at once.
+    /**
+     * Delete all selected tattoo at once.
      *
      * @param Request $request
      */
     public function massDestroy(Request $request)
     {
-        Appointment::whereIn('id', request('ids'))->delete();
+        Tattoo::whereIn('id', request('ids'))->delete();
 
         return response()->noContent();
     }

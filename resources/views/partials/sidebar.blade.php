@@ -38,18 +38,26 @@
                     <span>{{ __('Services') }}</span></a>
             </li>
 
-            <!-- employees -->
-            <li class="nav-item {{ request()->is('admin/employees') || request()->is('admin/employees') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.employees.index') }}">
+            <!-- services piercing -->
+            <li class="nav-item {{ request()->is('admin/services_piercings') || request()->is('admin/services_piercings') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.services_piercings.index') }}">
                 <i class="fas fa-cogs"></i>
-                    <span>{{ __('Employees') }}</span></a>
+                    <span>{{ __('Piercing Services') }}</span></a>
             </li>
 
-            <!-- clients -->
-            <li class="nav-item {{ request()->is('admin/clients') || request()->is('admin/clients') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.clients.index') }}">
+
+            <!-- tattoos -->
+            <li class="nav-item {{ request()->is('admin/tattoos') || request()->is('admin/tattoos') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.tattoos.index') }}">
                 <i class="fas fa-cogs"></i>
-                    <span>{{ __('Clients') }}</span></a>
+                    <span>{{ __('tattoos') }}</span></a>
+            </li>
+
+             <!--piercing bodypart -->
+             <li class="nav-item {{ request()->is('admin/bodypart_piercings') || request()->is('admin/bodypart_piercings') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.bodypart_piercings.index') }}">
+                <i class="fas fa-cogs"></i>
+                    <span>{{ __('piercing bodypart') }}</span></a>
             </li>
 
             <!-- appointments -->
@@ -57,6 +65,13 @@
                 <a class="nav-link" href="{{ route('admin.appointments.index') }}">
                 <i class="fas fa-cogs"></i>
                     <span>{{ __('appointments') }}</span></a>
+            </li>
+
+            <!--piercing appointments -->
+            <li class="nav-item {{ request()->is('admin/piercing_appointments') || request()->is('admin/piercing_appointments') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.piercing_appointments.index') }}">
+                <i class="fas fa-cogs"></i>
+                    <span>{{ __('piercing appointments') }}</span></a>
             </li>
 
             <!-- calendar -->

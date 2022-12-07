@@ -11,15 +11,12 @@ class Appointment extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    public function client(){
-        return $this->belongsTo(Client::class);
+    public function tattoo(){
+        return $this->belongsTo(Tattoo::class);
     }
 
-    public function employee(){
-        return $this->belongsTo(Employee::class);
-    }
 
     public function services(){
-        return $this->belongsToMany(Service::class);
+        return $this->belongsToMany(Service::class, '');
     }
 }
