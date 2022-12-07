@@ -45,7 +45,7 @@ class PiercingBodypartsController extends Controller
         $piercingBodyparts = PiercingBodyparts::create($request->validated() + [
             'name' => $request->name,
         ]);
-    $piercingBodyparts->piercing_services()->sync($request->input('piercing_services', []));
+    // $piercingBodyparts->piercing_services()->sync($request->input('piercing_services', []));
 
     return redirect()->route('admin.bodypart_piercings.index')->with([
         'message' => 'successfully created !',

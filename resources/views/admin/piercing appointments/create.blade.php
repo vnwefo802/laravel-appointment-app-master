@@ -16,6 +16,12 @@
         </div>
     @endif
 
+    @if(session()->has('success'))
+    <div class="alert alert-success text-center">
+         {{ session()->get('success') }}
+    </div>
+@endif
+
 <!-- Content Row -->
         <div class="card shadow">
             <div class="card-header">
@@ -65,7 +71,7 @@
 
                     <div class="form-group">
                         <label for="service">{{ __('piercing service') }}</label>
-                        <select class="form-control" name="services_piercings[]" >
+                        <select class="form-control" name="services_piercings" >
                             @foreach($piercing_services as $id => $piercing_service)
                                 <option value="{{ $id }}"> {{ $piercing_service }}</option>
                             @endforeach
@@ -77,7 +83,7 @@
             </div>
         </div>
 
-        
+
     <!-- Content Row -->
 
 </div>

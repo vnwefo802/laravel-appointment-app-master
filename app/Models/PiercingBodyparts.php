@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class PiercingBodyparts extends Model
 {
     use HasFactory;
-    protected $table = 'piercing_bodypart_services';
+    protected $table = 'piercing_bodyparts';
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 

@@ -49,13 +49,13 @@
                                 </td>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $piercing_appointment->name }}</td>
+                                <td>{{ $piercing_appointment->email }}</td>
+                                <td>{{ $piercing_appointment->phone }}</td>
+                                <td>{{ $piercing_appointment->serviceName }}</td>
                                 <td>{{ $piercing_appointment->start_time }}</td>
+                                <td>{{ $piercing_appointment->bodypartName }}</td>
                                 <td>${{ $piercing_appointment->deposit }}</td>
-                                <td>
-                                    @foreach($piercing_appointments->piercing_services as $key => $piercing_service)
-                                        <span class="badge badge-info">{{ $piercing_service->name }}</span>
-                                    @endforeach
-                                </td>
+
                                 <td>
                                     <div class="btn-group btn-group-sm">
                                         <a href="{{ route('admin.piercing_appointments.edit', $piercing_appointment->id) }}" class="btn btn-info">
